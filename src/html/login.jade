@@ -1,0 +1,17 @@
+extends _temp/main
+block head
+  link(rel='stylesheet', type='text/css', href='_HOST_/css/login.css', media='all')
+block body
+  .login_box.grid
+    .ct.wharf
+    .ct_6.field
+      i.iconfont.icon-850.icon_username
+    .ct_6-5
+      input(type='text')
+    .ct_6.field
+      i.iconfont.icon-811.icon_password
+    .ct_6-5
+      input(type='text')
+    .ct.btn_conatiner
+      button.btn.btn_primary(type='button') 登录
+  include _temp/js_base
