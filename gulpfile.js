@@ -29,6 +29,8 @@ var config = {
     copy_src: base.src+'/**/*.{json,png,jpg,gif,ico,eot,svg,ttf,woff,xml,html,css}',
     copy2build_src: base.dev+'/**/*.{json,eot,svg,ttf,woff,xml}',
     watch_reload_src: base.dev+'/**/*.{html,js,json,png,jpg,gif,ico,eot,svg,ttf,woff,xml}',
+    del_dev_src: base.dev+"/*",
+    del_build_src: [base.build+"/*",'!'+base.build+"/.git"],
 };
 // 编译jade为html
 gulp.task('jade',function(){
@@ -167,11 +169,11 @@ gulp.task('copy2build',['copy'],function(){
 });
 //清空文件夹
 gulp.task('del_dev',function(cb){
-    return gulp.src(base.dev,{read: false})
+    return gulp.src(config.del_dev_src,{read: false})
     .pipe(p.clean());
 });
 gulp.task('del_build',function(cb){
-    return gulp.src(base.build,{read: false})
+    return gulp.src(config.del_build_src,{read: false})
     .pipe(p.clean());
 });
 // 监听
