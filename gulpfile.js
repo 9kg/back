@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     min_png = require('imagemin-pngquant');
 var base = {
     host_str: '_HOST_',
-    host_url: 'http://192.168.1.120:5211',
+    host_url: 'http://192.168.1.163:5211',
     host_url_build: 'http://www.bramble.wang/back',
     src: './src',
     dev: './dev',
@@ -23,7 +23,7 @@ var config = {
     img_src: base.dev+'/**/*.{png,jpg,gif,ico}',
     concat_base_src: [base.src+'/js/base/jquery.js',base.src+'/js/base/base.js',base.src+'/js/base/*.js'],
     concat_chart_src: [base.src+'/js/chart/echarts.js',base.src+'/js/chart/renderChart.js'],
-    js_replace_src: [base.src+'/**/*.js','!'+base.src+'/js/{base,chart}/*.js'],
+    replace_src: [base.src+'/**/*.js',base.src+'/**/*.html',base.src+'/**/*.css','!'+base.src+'/js/{base,chart}/*.js'],
     uglify_src: base.dev+'/**/*.js',
     jshint_src: [base.src+'/js/**/*.js','!'+base.src+'/js/**/{jquery,echarts}.js'],
     copy_src: base.src+'/**/*.{json,png,jpg,gif,ico,eot,svg,ttf,woff,xml,html,css}',
@@ -101,8 +101,8 @@ gulp.task('concat_chart',function(){
 });
 gulp.task('concat',['concat_base','concat_chart']);
 // js replace
-gulp.task('js_replace',function(){
-    return gulp.src(config.js_replace_src)
+gulp.task('replace',function(){
+    return gulp.src(config.replace_src)
     .pipe(p.replace(base.host_str,base.host_url))
     .pipe(gulp.dest(base.dev));
 });
@@ -158,7 +158,7 @@ gulp.task('img',function(){
     .pipe(gulp.dest(base.build));
 });
 // 无需编译的代码 复制到dev
-gulp.task('copy',['js_replace'],function(){
+gulp.task('copy',['replace'],function(){
     return gulp.src(config.copy_src, { base: base.src })
     .pipe(p.changed(base.dev))
     .pipe(gulp.dest(base.dev));

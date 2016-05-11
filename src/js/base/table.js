@@ -80,7 +80,7 @@ Table.prototype = (function(){
             var aSort = a[s_data.sort];
             var bSort = b[s_data.sort];
             var isAsc = s_data.sort_dir === "asc" ? 1 : -1;
-            if($.type(aSort) === $.type(bSort) === "number"){
+            if($.type(aSort) === "number" &&  $.type(bSort) === "number"){
                 return ((aSort - bSort > 0) ? 1 : -1)*isAsc;
             }else{
                 return (''+aSort).localeCompare(''+bSort)*isAsc;
@@ -196,7 +196,7 @@ Table.prototype = (function(){
         var ths = $.map(this.col, function(n) {
             if(n.show !== false){
                 var th = $("<th>").html(n.title);
-                n.cls && th.addClass(n.cls);
+                th.addClass(n.cls).css("width",n.width);
                 if (n.sort) {
                     if (n.key === that.sendData.sort) {
                         th.addClass("sort_" + that.sendData.sort_dir);

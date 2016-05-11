@@ -69,7 +69,7 @@ textarea {
 
 .radio,
 .checkbox {
-    line-height: @input-height - 10px;
+    line-height: @input-height;
     position: relative;
     display: inline-block;
     height: @input-height;
@@ -81,7 +81,7 @@ textarea {
     .opt_imitate {
         position: absolute;
         cursor: pointer;
-        top: 0;
+        top: (@input-height - @radio-size)/2;
         left: 0;
         width: @radio-size;
         height: @radio-size;
@@ -221,60 +221,51 @@ textarea {
 .suffix,.suffix_btn {
     display: table;
     width: 100%;
-    border-radius: @input-radius;
-    overflow: hidden;
-    border: 1px solid @input-border-color;
-    box-sizing: border-box;
-    input,
-    .opt_imitate {
+    input,.opt_imitate {
         display: table-cell;
         .user-select(none);
         padding: 0 5px;
     }
     input {
-        border-radius: 0px;
-        border: none;
+        border-radius: 0;
         &:disabled + .opt_imitate.btn{
             cursor: not-allowed;
         }
     }
-    .opt_imitate:not(.btn){
+    .opt_imitate{
         vertical-align: middle;
-        background-color: #eee;
         text-align: center;
     }
+    .opt_imitate:not(.btn){
+        border: 1px solid @input-border-color;
+        border-left: none;
+        background-color: #eee;
+    }
+    .opt_imitate:first-child{
+        border-top-left-radius: @input-radius;
+        border-bottom-left-radius: @input-radius;
+        border-left: 1px solid @input-border-color;
+        border-right:none;
+    }
     .opt_imitate.btn{
-        border-radius: 0px;
         padding: 0px;
     }
-    input+.opt_imitate,
+    input+.opt_imitate{
+        border-radius: 0 @input-radius @input-radius 0;
+    }
     .opt_imitate+input {
-        border-left-width: 1px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
     }
 }
 .suffix{
-    .opt_imitate.btn{
-        border:none;
-        &:hover{
-            border-color: @input-border-color;
-        }
-    }
-    input+.opt_imitate,
-    .opt_imitate+input,
     input+.opt_imitate.btn{
-        border-left: 1px solid @input-border-color;
+        border-left:none;
     }
 }
 .suffix_btn{
-    border:none;
-    border-radius:0;
     input{
-        border-radius: @input-radius 0 0 @input-radius;
-        border: 1px solid @input-border-color;
         border-right: none;
-    }
-    .opt_imitate.btn{
-        border-radius: 0 @input-radius @input-radius 0;
     }
 }
 

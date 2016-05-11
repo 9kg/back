@@ -101,8 +101,12 @@ $(function(){
 
     // 小提示
     $.fn.operTip = function(content,other){
+        var _$ct = $(this);
+        while(_$ct.css("overflow") === "hidden" && !_$ct.is('body')){
+            _$ct = _$ct.parent();
+        }
         var paramObj = {
-            $ct: $(this),
+            $ct: _$ct,
             timeout: 2000,
             noClose: true,
             content: content,
@@ -142,17 +146,42 @@ $(function(){
         new Datepicker(option);
     };
 
+    // $("body").on("keyup","[data-validate]",function(){
+    //     var condition,tip,type = $(this).attr('data-validate');
+    //     var val = $(this).val();
+    //     switch(type){
+    //         case 'num': tip = "请输入数字！",condition = base.isNum(val); break;
+    //         case 'posNum': tip = "请输入大于0的数字！",condition = base.isNum(val) && val > 0; break;
+    //         case 'nonnegNum': tip = "请输入不小于0的数字！",condition = base.isNum(val) && val >= 0; break;
+    //         case 'int': tip = "请输入整数！",condition = base.isInt(val); break;
+    //         case 'nonnegInt': tip = "请输入不小于0的整数！",condition = base.isPosInt(val); break;
+    //         case 'posInt': tip = "请输入大于0的整数！",condition = base.isInt(val) && val > 0; break;
+    //         case 'require': tip = "该字段必填！",condition = !!val; break;
+    //         default: tip = "您的输入有误！",condition = base.isNum(val);
+    //     };
+
+    //     $(this).validate(condition,tip);
+    // });
+
     $("body").on("keyup","[data-validate]",function(){
-        var condition,tip,type = $(this).attr('data-validate');
+        var condition=true,tip,types = $(this).attr('data-validate');
+        types && (types = types.split(','));
         var val = $(this).val();
-        switch(type){
-            case 'num': tip = "请输入数字！",condition = base.isNum(val); break;
-            case 'int': tip = "请输入整数！",condition = base.isInt(val); break;
-            case 'nonnegInt': tip = "请输入不小于0的整数！",condition = base.isPosInt(val); break;
-            case 'posInt': tip = "请输入大于0的整数！",condition = base.isPosInt(val) && val != 0; break;
-            case 'require': tip = "该字段必填！",condition = !!val; break;
-            default: tip = "您的输入有误！",condition = base.isNum(val);
-        };
+        for(var i=0; i<types.length; i++){
+            if(!condition){
+                break;
+            }
+            switch(types[i]){
+                case 'require': tip = "该字段必填！",condition = !!val; break;
+                case 'num': tip = "请输入数字！",condition = base.isNum(val); break;
+                case 'int': tip = "请输入整数！",condition = base.isInt(val); break;
+                case '+': tip = "请输入大于0的数字！",condition = val > 0; break;
+                case '-': tip = "请输入大于0的数字！",condition = val < 0; break;
+                case '!-': tip = "请输入不小于0的数字！",condition = val >= 0; break;
+                case '!+': tip = "请输入不大于0的数字！",condition = val <= 0; break;
+                default: tip = "您的输入有误！",condition = base.isNum(val);
+            };
+        }
 
         $(this).validate(condition,tip);
     });
