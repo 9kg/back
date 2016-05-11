@@ -1,0 +1,96 @@
+extends _temp/main
+block body
+    - var curPage = "项目";
+    include _temp/menu
+    .content
+    include _temp/js_base
+    script(type='text/javascript').
+        $(function() {
+            var opt = {
+                $ct: $(".content"),
+                col: [{
+                    key: "id",
+                    title: "ID",
+                    sort: true,
+                    filter: true,
+                    width: 50
+                }, {
+                    key: "idfa",
+                    title: "IDFA",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "phone",
+                    title: "电话",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "wechat",
+                    title: "微信",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "ip",
+                    title: "最近IP",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "login_times",
+                    title: "登录次数",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "login",
+                    title: "最近登录",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "today",
+                    title: "今日收入",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "money",
+                    title: "历史收入",
+                    sort: true
+                }, {
+                    key: "id",
+                    title: "操作",
+                    render: function(a, b) {
+                        var btn_query = $('<button type="button" class="btn btn_info btn_query" data-id="' + b + '">查看</button>');
+                        var btn_level = $('<button type="button" class="btn btn_info btn_level" data-id="' + b + '">特邀</button>');
+                        a.append(btn_query, btn_level);
+                    }
+                }],
+                isLocal: true,
+                url: "_HOST_/js/json/user.json"
+            };
+            new Table(opt);
+
+            // 定义升级特邀用户窗口
+            var box_add_guest_user = new Box({
+                title: "接口",
+                html: "_HOST_/html/temp/add_guest_user.html .add_guest_user_form",
+                css: {
+                    "min-width": "200px"
+                },
+                fnSure: function(that) {
+                    var $dockForm = $('.add_guest_user');
+                    if (!base.formValidate($dockForm)) {
+                        return false;
+                    } else {
+
+                    }
+                },
+                fnCancel: function(t) {}
+            });
+
+            $("body").on("click", ".btn_level", function() {
+                var id = $(this).data("data-id");
+                box_add_guest_user.initHeader('添加特邀用户');
+
+                box_add_guest_user.initContent('_HOST_/html/temp/add_guest_user.html .add_guest_user_form', function() {
+                    box_add_guest_user.show();
+                });
+            });
+        });

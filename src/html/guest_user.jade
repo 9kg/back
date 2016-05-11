@@ -1,0 +1,85 @@
+extends _temp/main
+block body
+    - var curPage = "项目";
+    include _temp/menu
+    .content
+    include _temp/js_base
+    script(type='text/javascript').
+        $(function() {
+            var opt = {
+                $ct: $(".content"),
+                col: [{
+                    key: "id",
+                    title: "ID",
+                    sort: true,
+                    filter: true,
+                    width: 50
+                }, {
+                    key: "idfa",
+                    title: "推广",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "phone",
+                    title: "姓名",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "wechat",
+                    title: "手机号码",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "ip",
+                    title: "微信号码",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "login_times",
+                    title: "类别",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "login",
+                    title: "平台",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "today",
+                    title: "粉丝(在线观看)人数",
+                    sort: false,
+                    filter: true
+                }, {
+                    key: "money",
+                    title: "推广费用",
+                    sort: true
+                }, {
+                    key: "money",
+                    title: "已付费用",
+                    sort: true
+                }, {
+                    key: "money",
+                    title: "带来的下载量",
+                    sort: true
+                }, {
+                    key: "money",
+                    title: "带来的任务量",
+                    sort: true
+                }, {
+                    key: "money",
+                    title: "产生的总消费",
+                    sort: true
+                }, {
+                    key: "id",
+                    title: "操作",
+                    render: function(a, b) {
+                        var btn_query = $('<button type="button" class="btn btn_info btn_query" data-id="' + b + '">查看</button>');
+                        var btn_level = $('<button type="button" class="btn btn_info btn_level" data-id="' + b + '">支付</button>');
+                        a.append(btn_query, btn_level);
+                    }
+                }],
+                isLocal: true,
+                url: "_HOST_/js/json/user.json"
+            };
+            new Table(opt);
+        });

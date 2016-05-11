@@ -1,0 +1,66 @@
+extends ../_temp/main
+block body
+    .add_guest_user_form
+        style(type='text/css').
+            .add_guest_user{
+                max-width: 500px;
+                margin: 10px auto;
+            }
+            .charge_by_one_ct{
+                text-align: right;
+            }
+            .charge_by_one_ct .checkbox{
+                padding-right: 0;
+            }
+        form.add_guest_user
+            .grid
+                .ct.grid
+                    .ct_4.field 类别
+                    .ct_4-3
+                        select(name="guest_type")
+                            option(value="") 请选择
+                            option(value="anchor", data-show=".anchor_platform_ct") 主播
+                            option(value="weibo", data-show=".weibo_platform_ct") 微博
+                            option(value="qq") QQ群
+                            option(value="wechat") 微信
+                            option(value="underline") 线下推广
+                            option(value="other") 其他
+                .ct.grid.anchor_platform_ct.hidden
+                    .ct_4.field 主播平台
+                    .ct_4-3
+                        select(name="anchor_platform", disabled="disabled")
+                            option(value="") 请选择
+                            option(value="longzhu") 龙珠
+                            option(value="douyu") 斗鱼
+                            option(value="zhanqi") 战旗
+                            option(value="huya") 虎牙
+                            option(value="panda") 熊猫
+                .ct.grid.weibo_platform_ct.hidden
+                    .ct_4.field 微博平台
+                    .ct_4-3
+                        select(name="weibo_platform", disabled="disabled")
+                            option(value="") 请选择
+                            option(value="tecent") 腾讯
+                            option(value="sina") 新浪
+                .ct.grid
+                    .ct_4.field 粉丝(在线观看)人数
+                    .ct_4-3
+                        label.suffix
+                            input(type='text', name='fans_num', data-validate="require,int,!-")
+                            span.opt_imitate 人
+                .ct.grid
+                    .ct_4.field 姓名
+                    .ct_4-3
+                        input(type='text', name='guest_user_name', data-validate="require")
+                .ct.grid
+                    .ct_4.field 推广费用
+                    .ct_4-3.grid_nowrap
+                        .ct_3-2
+                            label.suffix
+                                input(type='text', name='promotion_costs', data-validate="require,num,!-")
+                                span.opt_imitate 元
+                        .ct_3.charge_by_one_ct
+                            label.checkbox
+                                input(type='checkbox', name='charge_by_one',checked)
+                                span.opt_imitate
+                                span.opt_desc 按个计费
