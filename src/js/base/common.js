@@ -1,11 +1,15 @@
 $(function(){
-    $('.sidebar').toggleClass('another_form',localStorage.getItem('another_form') === "true" && $(window).width() > 768);
     //another form menu
     $('.toggle_another_form').on('click', function() {
         $('.sidebar').toggleClass('another_form');
         localStorage.setItem('another_form',$('.sidebar').is(".another_form"));
         $(window).resize();
     });
+    if(localStorage.getItem('another_form') === "true" && $(window).width() > 768){
+        setTimeout(function(){
+            $('.toggle_another_form').trigger("click");
+        },0)
+    }
 
     //buttons
     $("body").on("click",".buttons .btn",function(){
@@ -128,6 +132,7 @@ $(function(){
 
     // 验证
     $.fn.validate = function(condition,tip,other){
+        $.isFunction(condition) && (condition = condition.call(this));
         $(this).toggleClass("invalid",!condition);
         var paramObj = {isShow: !condition,dir:'top',theme: 'danger',timeout: 3000,css:{'white-space':'nowrap'}};
         $.extend(true, paramObj, other);
@@ -143,25 +148,8 @@ $(function(){
             isShow: false
         };
         $.extend(true, option, opt);
-        new Datepicker(option);
+        return new Datepicker(option);
     };
-
-    // $("body").on("keyup","[data-validate]",function(){
-    //     var condition,tip,type = $(this).attr('data-validate');
-    //     var val = $(this).val();
-    //     switch(type){
-    //         case 'num': tip = "请输入数字！",condition = base.isNum(val); break;
-    //         case 'posNum': tip = "请输入大于0的数字！",condition = base.isNum(val) && val > 0; break;
-    //         case 'nonnegNum': tip = "请输入不小于0的数字！",condition = base.isNum(val) && val >= 0; break;
-    //         case 'int': tip = "请输入整数！",condition = base.isInt(val); break;
-    //         case 'nonnegInt': tip = "请输入不小于0的整数！",condition = base.isPosInt(val); break;
-    //         case 'posInt': tip = "请输入大于0的整数！",condition = base.isInt(val) && val > 0; break;
-    //         case 'require': tip = "该字段必填！",condition = !!val; break;
-    //         default: tip = "您的输入有误！",condition = base.isNum(val);
-    //     };
-
-    //     $(this).validate(condition,tip);
-    // });
 
     $("body").on("keyup","[data-validate]",function(){
         var condition=true,tip,types = $(this).attr('data-validate');

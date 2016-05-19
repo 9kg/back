@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     min_png = require('imagemin-pngquant');
 var base = {
     host_str: '_HOST_',
-    host_url: 'http://192.168.1.163:5211',
+    host_url: 'http://192.168.1.111:5211',
     host_url_build: 'http://www.bramble.wang/back',
     src: './src',
     dev: './dev',
@@ -26,7 +26,7 @@ var config = {
     replace_src: [base.src+'/**/*.js',base.src+'/**/*.html',base.src+'/**/*.css','!'+base.src+'/js/{base,chart}/*.js'],
     uglify_src: base.dev+'/**/*.js',
     jshint_src: [base.src+'/js/**/*.js','!'+base.src+'/js/**/{jquery,echarts}.js'],
-    copy_src: base.src+'/**/*.{json,png,jpg,gif,ico,eot,svg,ttf,woff,xml,html,css}',
+    copy_src: [base.src+'/**/*.{json,png,jpg,gif,ico,eot,svg,ttf,woff,xml,html,css}'],
     copy2build_src: base.dev+'/**/*.{json,eot,svg,ttf,woff,xml}',
     watch_reload_src: base.dev+'/**/*.{html,js,json,png,jpg,gif,ico,eot,svg,ttf,woff,xml}',
     del_dev_src: base.dev+"/*",
@@ -182,7 +182,7 @@ gulp.task('watch',function(){
     gulp.watch(config.jade_src,['jade']);
     gulp.watch(config.concat_base_src,['concat_base']);
     gulp.watch(config.concat_chart_src,['concat_chart']);
-    gulp.watch(config.copy_src,['copy']);
+    gulp.watch(config.copy_src.concat(config.replace_src),['copy']);
     gulp.watch(config.watch_reload_src).on('change',bs.reload);
 });
 // 默认启动任务

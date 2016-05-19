@@ -70,7 +70,9 @@ Box.prototype = (function(){
         }).on("click",".confirm_cancel",function(){
             var flag = that.fnCancel && that.fnCancel(that);
             flag !== false && that.hide();
-        })
+        }).bind("click",function(e){
+            !that.footer && that.$el.is(e.target) && that.hide();
+        });
     },
     toggle = function(flag){
         this.$el.toggle(flag);

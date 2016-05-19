@@ -10,7 +10,7 @@ function Tip(opt){
     this.theme = "default";         //primary,info,success,warning,danger,magenta(暂时这么多主题)
     $.extend(true, this, opt);      //----------此行上方参数可配置------------
 
-    this.$el = this.$ct.find(">.tip");
+    this.$el = this.$ct.children(".tip");
     
     this.init();
 }
@@ -92,7 +92,7 @@ Tip.prototype = (function(){
     },correctPos = function(){
         var that = this;
         this.$ct.each(function(){
-            var $tip = $(this).find(".tip");
+            var $tip = $(this).children(".tip");
             $tip.removeClass("tip_left tip_top tip_right tip_bottom");
             $tip.addClass("tip_"+(that.dir || _getMaxDir($(this))));
         });

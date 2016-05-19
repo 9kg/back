@@ -11,6 +11,7 @@ function Table(opt){
     this.pageTotal = 0;                                 //总页数（ajax拿取数据后计算并更新）
     this.total = 0;                                     //总记录数（ajax拿取数据后更新）
     this.data = null;                                   //当前表格数据
+    this.theme = "default";                             //主题（样式）
     this.timeout_fv = 900;                              //搜索文本框的延时搜索
     this.time_fv = 0;                                   //搜索文本框的timeout记录
     this.delay_mask_time = 500;                         //响应时间过长显示mask等待框
@@ -103,7 +104,17 @@ Table.prototype = (function(){
         }
         _renderHtml(that,renderData);
     },_renderHtml = function(that,data){
+        var oldClass = that.$el[0].className.split(' ');
+        var newClass = $.map(oldClass,function(item){
+            if(item.slice(0,12) !== 'table_theme_'){
+                return item;
+            }
+        }).join(' ');
+        that.$el[0].className = newClass;
+        that.theme !== "default" && that.$el.addClass('table_theme_'+that.theme);
+
         $('.table_filter',that.$ct).after(that.$el);
+
         that.renderTh();
         that.renderTd(data);
 

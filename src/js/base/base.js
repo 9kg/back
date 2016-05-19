@@ -1,8 +1,21 @@
 (function(){
     // 对面的进行验证
     function formValidate($el){
-        var $els = $el.find('input[type="text"]:enabled').trigger('keyup').filter('.invalid');
-        return !$els.length;
+        var $inputs = $el.find('input[type="text"]:enabled,textarea:enabled').trigger('keyup').filter('.invalid');
+        var $sels = $el.find('select:enabled').trigger('change').filter('.invalid');
+        return !($inputs.length+$sels.length);
+    }
+    // 获取指定参数
+    function getParam(param){
+        var val;
+        var params = window.location.search.slice(1).split("&");
+        $.each(params,function(i,item){
+            if(item && item.split('=')[0] === param){
+                val = item.split('=')[1];
+                return false;
+            }
+        });
+        return val;
     }
     // 对传入元素下文本框设置必填验证
     function requireChild($el){
@@ -225,6 +238,7 @@
         numFormat: numFormat,
         numToInt: numToInt,
         toPad: toPad,
+        getParam: getParam,
         now: now,
         date: date,
         calDate: calDate,

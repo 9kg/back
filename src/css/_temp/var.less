@@ -1,3 +1,12 @@
+// theme
+@theme-default: #bbb;
+@theme-primary: #007aff;
+@theme-info: #5bc0de;
+@theme-success: #60c560;
+@theme-warning: #f0ad4e;
+@theme-danger: #d9534f;
+@theme-magenta: #d94084;
+
 //grid
 @grid-padding: 5px;
 
@@ -48,22 +57,25 @@
 //button
 @btn-padding: 6px;
 @btn-size: 14px;
-@btn-default: #bbb;
-@btn-primary: #007aff;
-@btn-info: #5bc0de;
-@btn-success: #60c560;
-@btn-warning: #f0ad4e;
-@btn-danger: #d9534f;
-@btn-magenta: #d94084;
 
 //table
-@table-border-color: #ccc;
-@th-bg: #eee;
-@th-color: #333;
+@table-default: @sidebar-bg;
+@table-gray: darken(@theme-default,15%);
+@table-primary: darken(@theme-primary,5%);
+@table-info: darken(@theme-info,10%);
+@table-lightblue: #3ab0ff;
+@table-success: darken(@theme-success,25%);
+@table-warning: darken(@theme-warning,20%);
+@table-danger: @theme-danger;
+@table-magenta: lighten(@theme-magenta,15%);
+
+@table-border-color: #eee;
+@th-bg: #999;
+@th-color: #fff;
 @td-color: #555;
 @cell-padding: 5px 10px;
-@sort-color: #888;
-@sort-active-color: #333;
+@sort-color: #ccc;
+@sort-active-color: #fff;
 @sort2right: 3px;
 @sort-width: 10px;
 @sort-height: 8px;
@@ -72,4 +84,5 @@
 @table-curPage-color: #333;
 @table-curPage-margin: 10px;
 @table-curPage-width: 50px;
-@table-btn-disabled: #A7CDD8;
+@table-btn-disabled: #ccc;
+@table-footer-bg: #eee;

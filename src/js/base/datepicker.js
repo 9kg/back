@@ -21,6 +21,7 @@ Datepicker.prototype = (function(){
         this.$ct.css("position") === "static" && this.$ct.css("position","relative");
 
         this.$el = $('<div class="datepicker hidden date_'+this.dir+'">');
+        this.resize();
         this.isShow && this.show();
         this.render();
         this.addEvent();
@@ -51,7 +52,7 @@ Datepicker.prototype = (function(){
         minute = base.toPad(minute, 0, 2, true);
         this.datetime.setMinutes(minute);
 
-        body.append([_renderWeek(this.weeks),_renderDay(days_cur,days_prev,this.datetime)]);
+        body.append([_renderWeek(this.weeks),_renderDay(days_cur,days_prev,this)]);
         this.timepicker && body.append(_renderTime(hour,minute));
         return body;
     },_renderWeek = function(weeks){
@@ -61,7 +62,8 @@ Datepicker.prototype = (function(){
                     });
         week.append(items);
         return week;
-    },_renderDay = function(days_cur,days_prev,date){
+    },_renderDay = function(days_cur,days_prev,that){
+        var date = that.datetime;
         var day = $('<ul class="date_day">');
         var today = +base.date('j',date);
         var week_firstDay = (new Date(date.getFullYear(), date.getMonth(), 1)).getDay();
@@ -75,9 +77,11 @@ Datepicker.prototype = (function(){
             items_next.push($('<li class="day_disable">'+(++i)+'</li>'));
         }
         while(days_cur > 0){
-            items_cur.unshift($('<li'+(today === days_cur ? ' class="active"' : '')+'>'+(days_cur--)+'</li>'));
+            var $item = $('<li'+(today === days_cur ? ' class="active"' : '')+'>'+(days_cur--)+'</li>');
+            _validate($item,that);
+            items_cur.unshift($item);
         }
-        day.append(items_prev,items_cur,items_next,$('<li class="haha">'));
+        day.append(items_prev,items_cur,items_next,$('<li class="day_shadow">'));
         return day;
     },_renderTime = function(hour,minute){
         var time = $('<div class="date_time">');
@@ -98,19 +102,59 @@ Datepicker.prototype = (function(){
             +'<button type="button" class="btn_date_now">当前时间</button>'
             +'<button type="button" class="btn_date_sure">确认</button>');
         return foot;
+    },_validate = function($item,that){
+        if(that.max){
+            var thisTime = new Date(base.date("y",that.datetime),base.date("n",that.datetime)-1,$item.text()).getTime();
+            var maxTime = that.max === "today" ? new Date().getTime() : new Date(that.max).getTime();
+            if(thisTime > maxTime){
+                $item.addClass("day_disable");
+            }
+        }
+        if(that.min){
+            var thisTime = new Date(that.datetime).setDate($item.text());
+            var minTime = that.min === "today" ? new Date(base.date("y"),base.date("n")-1,base.date("j")).getTime() : new Date(that.min).getTime();
+            if(thisTime < minTime){
+                $item.addClass("day_disable");
+            }
+        }
+    },correctPos = function(){
+        this.$el.toggleClass("date_right_align", ($(window).width() - this.$ct.offset().left) < 200);
+    },resize = function(){
+        var that = this;
+        var resizeTimeout = 0;
+        this.correctPos();
+        $(window).resize(function() {
+            resizeTimeout && clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function(){
+                                that.correctPos();
+                            },100);
+        });
+    },cgDatetime = function(newDatetime){
+        var newTime = newDatetime.getTime();
+        if(this.max){
+            var maxTime = this.max === "today" ? new Date().getTime() : new Date(this.max).getTime();
+            newTime = Math.min(maxTime,newTime);
+        }
+        if(this.min){
+            var minTime = this.min === "today" ? new Date().getTime() : new Date(this.min).getTime();
+            newTime = Math.max(minTime,newTime);
+        }
+        newDatetime = new Date(newTime);
+        this.datetime = newDatetime;
+        return this;
     },addEvent = function(){
         var that = this;
         this.$el.on("click", ".icon_left_year,.icon_right_year,.icon_left_month,.icon_right_month", function(e) {
             var $target = $(e.target);
             var date = that.datetime;
             if($target.is('.icon_left_year')){
-                that.datetime  = base.calDate('y',-1,date);
+                that.cgDatetime(base.calDate('y',-1,date));
             }else if($target.is('.icon_right_year')){
-                that.datetime  = base.calDate('y',1,date);
+                that.cgDatetime(base.calDate('y',1,date));
             }else if($target.is('.icon_left_month')){
-                that.datetime  = base.calDate('m',-1,date);
+                that.cgDatetime(base.calDate('m',-1,date));
             }else if($target.is('.icon_right_month')){
-                that.datetime  = base.calDate('m',1,date);
+                that.cgDatetime(base.calDate('m',1,date));
             }
 
             that.render();
@@ -128,6 +172,7 @@ Datepicker.prototype = (function(){
             that.render();
         }).on("click", ".btn_date_sure", function() {
             that.$toInput.val(base.date(that.format,that.datetime));
+            that.$toInput.trigger("change");
             that.hide();
         }).on("click", ".btn_date_cancel", function() {
             that.hide();
@@ -135,11 +180,11 @@ Datepicker.prototype = (function(){
 
         this.$link.bind('click',function(e){
             that.toggle();
-            // that.$toInput.focus();
         });
     },toggle = function(){
-        this.$el.toggleClass("hidden");
+        this.$el.is(".hidden") ? this.show() : this.hide();
     },show = function(){
+        $(".datepicker").addClass("hidden");
         this.$el.removeClass("hidden");
     },hide = function(){
         this.$el.addClass("hidden");
@@ -150,6 +195,9 @@ Datepicker.prototype = (function(){
         renderHead: renderHead,
         renderBody: renderBody,
         renderFoot: renderFoot,
+        cgDatetime: cgDatetime,
+        correctPos: correctPos,
+        resize: resize,
         show: show,
         hide: hide, 
         toggle: toggle,

@@ -1,5 +1,23 @@
-.btn
-{
+.btn_style(@btn-color){
+    color: #fff;
+    background-color: @btn-color;
+    &:hover,&.active,&.active:hover
+    {
+        color: @btn-color;
+        border-color: @btn-color;
+        background-color: transparent;
+    }
+}
+.btn_outline_style(@btn-color){
+    color: @btn-color;
+    border-color: @btn-color;
+    background-color: transparent;
+    &:hover,&.active,&.active:hover{
+        color: #fff;
+        background-color: @btn-color;
+    }
+}
+.btn{
     font-size: @btn-size;
     font-weight: normal;
     line-height: 1.2em;
@@ -14,159 +32,59 @@
     vertical-align: middle;
     white-space: nowrap;
 
-    color: #fff;
     border: 1px solid transparent;
     border-radius: 4px;
-    background-color: @btn-default;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); //清除在IOS上激活时的高亮;
 
     .user-select(none);
     .transition(all .15s);
-    &:focus
-    {
+    &:focus{
         outline: none;
-    }
-    &:hover,&.active,&.active:hover
-    {
-        color: @btn-default;
-        border-color: @btn-default;
-        background-color: transparent;
     }
     &.active{
         cursor: auto;
     }
-    &.btn_primary
-    {
-        background-color: @btn-primary;
-        &:hover,&.active,&.active:hover
-        {
-            color: @btn-primary;
-            border-color: @btn-primary;
-            background-color: transparent;
-        }
-    }
-    &.btn_info
-    {
-        background-color: @btn-info;
-        &:hover,&.active,&.active:hover
-        {
-            color: @btn-info;
-            border-color: @btn-info;
-            background-color: transparent;
-        }
-    }
-    &.btn_success
-    {
-        background-color: @btn-success;
-        &:hover,&.active,&.active:hover
-        {
-            color: @btn-success;
-            border-color: @btn-success;
-            background-color: transparent;
-        }
-    }
-    &.btn_warning
-    {
-        background-color: @btn-warning;
-        &:hover,&.active,&.active:hover
-        {
-            color: @btn-warning;
-            border-color: @btn-warning;
-            background-color: transparent;
-        }
-    }
-    &.btn_danger
-    {
-        background-color: @btn-danger;
-        &:hover,&.active,&.active:hover
-        {
-            color: @btn-danger;
-            border-color: @btn-danger;
-            background-color: transparent;
-        }
-    }
-    &.btn_magenta
-    {
-        background-color: @btn-magenta;
-        &:hover,&.active,&.active:hover
-        {
-            color: @btn-magenta;
-            border-color: @btn-magenta;
-            background-color: transparent;
-        }
-    }
-    &[class*=_outline]
-    {
-        color: @btn-default;
-        border-color: @btn-default;
-        background-color: transparent;
-        &:hover,&.active,&.active:hover
-        {
-            color: #fff;
-            background-color: @btn-default;
-        }
-        &.btn_primary_outline
-        {
-            color: @btn-primary;
-            border-color: @btn-primary;
-            &:hover,&.active,&.active:hover
-            {
-                color: #fff;
-                background-color: @btn-primary;
-            }
-        }
-        &.btn_info_outline
-        {
-            color: @btn-info;
-            border-color: @btn-info;
-            &:hover,&.active,&.active:hover
-            {
-                color: #fff;
-                background-color: @btn-info;
-            }
-        }
-        &.btn_success_outline
-        {
-            color: @btn-success;
-            border-color: @btn-success;
-            &:hover,&.active,&.active:hover
-            {
-                color: #fff;
-                background-color: @btn-success;
-            }
-        }
-        &.btn_warning_outline
-        {
-            color: @btn-warning;
-            border-color: @btn-warning;
-            &:hover,&.active,&.active:hover
-            {
-                color: #fff;
-                background-color: @btn-warning;
-            }
-        }
-        &.btn_danger_outline
-        {
-            color: @btn-danger;
-            border-color: @btn-danger;
-            &:hover,&.active,&.active:hover
-            {
-                color: #fff;
-                background-color: @btn-danger;
-            }
-        }
-        &.btn_magenta_outline
-        {
-            color: @btn-magenta;
-            border-color: @btn-magenta;
-            &:hover,&.active,&.active:hover
-            {
-                color: #fff;
-                background-color: @btn-magenta;
-            }
-        }
-    }
+    .btn_style(@theme-default);
 }
+.btn.btn_primary{
+    .btn_style(@theme-primary);
+}
+.btn.btn_info{
+    .btn_style(@theme-info);
+}
+.btn.btn_success{
+    .btn_style(@theme-success);
+}
+.btn.btn_warning{
+    .btn_style(@theme-warning);
+}
+.btn.btn_danger{
+    .btn_style(@theme-danger{);
+}
+.btn.btn_magenta{
+    .btn_style(@theme-magenta);
+}
+.btn.btn_outline{
+    .btn_outline_style(@theme-default);
+}
+.btn.btn_primary_outline{
+    .btn_outline_style(@theme-primary);
+}
+.btn.btn_info_outline{
+    .btn_outline_style(@theme-info);
+}
+.btn.btn_success_outline{
+    .btn_outline_style(@theme-success);
+}
+.btn.btn_warning_outline{
+    .btn_outline_style(@theme-warning);
+}
+.btn.btn_danger_outline{
+    .btn_outline_style(@theme-danger);
+}
+.btn.btn_magenta_outline{
+    .btn_outline_style(@theme-magenta);
+}
+
 .buttons {
     display: inline-block;
     vertical-align: top;
@@ -189,7 +107,7 @@
     }
     ul{
         position: absolute;
-        border: 1px solid @btn-default;
+        border: 1px solid @theme-default;
         padding: 0 5px;
         margin-left: 2px;
         margin-top: 2px;
