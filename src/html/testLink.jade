@@ -1,0 +1,72 @@
+extends _temp/main
+block body
+    - var curPage = "表格";
+    .content
+        button.btn |开始
+    include _temp/js_base
+    script(type='text/javascript').
+        $('.btn').click(function(){
+            location.href = "https://itunes.apple.com/cn/app/lai-zhuantruth/id1091484921?mt=8";
+        });
+        
+        function getBrowserPrefix() {
+
+          // Check for the unprefixed property.
+          if ('hidden' in document) {
+            return null;
+          }
+         
+          // All the possible prefixes.
+          var browserPrefixes = ['moz', 'ms', 'o', 'webkit'];
+         
+          for (var i = 0; i < browserPrefixes.length; i++) {
+            var prefix = browserPrefixes[i] + 'Hidden';
+            if (prefix in document) {
+              return browserPrefixes[i];
+            }
+          }
+         
+          // The API is not supported in browser.
+          return null;
+        }
+
+        // Get Browser Specific Hidden Property
+        function hiddenProperty(prefix) {
+          if (prefix) {
+            return prefix + 'Hidden';
+          } else {
+            return 'hidden';
+          }
+        }
+         
+        // Get Browser Specific Visibility State
+        function visibilityState(prefix) {
+          if (prefix) {
+            return prefix + 'VisibilityState';
+          } else {
+            return 'visibilityState';
+          }
+        }
+         
+        // Get Browser Specific Event
+        function visibilityEvent(prefix) {
+          if (prefix) {
+            return prefix + 'visibilitychange';
+          } else {
+            return 'visibilitychange';
+          }
+        }
+         // Get Browser Prefix
+        var prefix = getBrowserPrefix();
+        var hidden = hiddenProperty(prefix);
+        var visibilityState = visibilityState(prefix);
+        var visibilityEvent = visibilityEvent(prefix);
+
+        // Visibility Change 
+        document.addEventListener(visibilityEvent, function(event) {
+              if (document[hidden]) {
+                  setTimeout(function(){
+                    location.href = "lzv2store12://user/isUser";
+                  },300);
+              }
+        });

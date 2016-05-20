@@ -129,6 +129,12 @@ Datepicker.prototype = (function(){
                                 that.correctPos();
                             },100);
         });
+    },cgOpt = function(opt){
+        var that = this;
+        $.each(opt,function(key,val){
+            that[key] = val;
+        });
+        this.render();
     },cgDatetime = function(newDatetime){
         var newTime = newDatetime.getTime();
         if(this.max){
@@ -192,6 +198,7 @@ Datepicker.prototype = (function(){
     return {
         init: init,
         render: render,
+        cgOpt: cgOpt,
         renderHead: renderHead,
         renderBody: renderBody,
         renderFoot: renderFoot,

@@ -325,12 +325,12 @@ block body
             //- 事件
             $(".date_start").bind("change",function(){
                 //- $(".date_end").val(base.date("y-m-d",base.calDate('m',1,new Date($(this).val()))));
-                date_end.min = $(this).val();
+                date_end.cgOpt({min: $(this).val()});
                 getData();
             });
             $(".date_end").bind("change",function(){
                 //- $(".date_start").val(base.date("y-m-d",base.calDate('m',-1,new Date($(this).val()))));
-                date_start.max = $(this).val();
+                date_start.cgOpt({max: $(this).val()});
                 getData();
             });
             $(".query_type,.query_some,#chart_type").bind("change",function(){
