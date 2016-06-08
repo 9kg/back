@@ -5,7 +5,13 @@ aside.sidebar
         i.iconfont.icon-7cd.toggle_another_form
     ul.menu
         -
-            menus = [{url:"todo",icon:"878",title:"TODO"},
+            menus = [{items:[{url:"table/user",title:"用户(user)"},
+                            {url:"table/guest_user",title:"特邀用户(guest_user)"},
+                            {url:"report/guest_user",title:"特邀用户报表"},
+                            {url:"table/business",title:"商务人员"},
+                            {url:"table/adver",title:"广告主"},
+                            {url:"table/task",title:"任务"}],icon:"72e",title:"项目"},
+                    {url:"todo",icon:"878",title:"TODO"},
                     {items:[{url:"grid",title:"网格布局(grid)"},
                             {url:"button",title:"按钮(button)"},
                             {url:"form_element",title:"表单元素(form-element)"},
@@ -16,9 +22,6 @@ aside.sidebar
                             {url:"icon_font",title:"图标(iconfont)"},
                             {url:"expression",title:"表情(expression)"},
                             {url:"datepicker",title:"日期控件(datepicker)"}],icon:"72d",title:"UI组件"},
-                    {items:[{url:"spd/user",title:"用户(user)"},
-                            {url:"spd/guest_user",title:"特邀用户(guest_user)"},
-                            {url:"report/guest_user",title:"特邀用户报表"}],icon:"72e",title:"项目"},
                     {items:[{url:"chart1",title:"图表1"},
                             {url:"chart2",title:"图表2"}],icon:"889",title:"图表"},
                     {items:[{url:"table1",title:"表格1"},

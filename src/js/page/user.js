@@ -76,6 +76,6 @@ $(function() {
             $tip_ct.operTip(tip || "操作成功！",{theme: "warning"});
         }
     }).on('click','table .btn_query_detail',function(){
-        window.open('_HOST_/html/spd/user_detail.html?id='+$(this).data('id'));
+        window.open('_HOST_/html/detail/user_detail.html?id='+$(this).data('id'));
     });
 });

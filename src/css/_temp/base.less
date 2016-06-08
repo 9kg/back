@@ -31,13 +31,18 @@ body {
 .t_right{
     text-align: right;
 }
-@media (min-width: @screen-sm) {
-    .nowrap{
-        .ellipsis();
+@media (max-width: @screen-md) {
+    .hidden_md{
+        display: none;
     }
 }
 @media (max-width: @screen-sm) {
     .hidden_xs{
         display: none;
+    }
+}
+@media (min-width: @screen-sm) {
+    .nowrap{
+        .ellipsis();
     }
 }

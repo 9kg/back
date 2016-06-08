@@ -1,6 +1,6 @@
 //table
 function Table(opt){
-    this.info = "显示 start ~ end 条，共 num 条记录";     //当前展示记录数量信息
+    this.info = "显示 start ~ end 条，共 num 条记录";      //当前展示记录数量信息
     this.info_nodata = "暂无数据";                       //当前展示记录数量信息
     this.url = '';                                      //获取数据的地址（通过传参获得）
     this.pageSizes = [10,20,50,100];                    //可供分页的页码

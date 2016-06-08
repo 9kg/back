@@ -1,11 +1,20 @@
+var os = require('os');
+var en = os.networkInterfaces().en0 || os.networkInterfaces().en1;
+var curIP;
+for(var i=0;i<en.length;i++){
+    if(en[i].family=='IPv4'){
+        curIP = en[i].address;
+    }
+}
+
 var gulp = require('gulp'),
     p = require('gulp-load-plugins')(),   
     bs = require('browser-sync').create(),
     min_png = require('imagemin-pngquant');
 var base = {
     host_str: '_HOST_',
-    host_url: 'http://192.168.1.135:5211',
-    host_url_build: 'http://www.bramble.wang/back',
+    host_url: 'http://'+curIP+':5211',
+    host_url_build: 'http://git.bramble.wang/back',
     src: './src',
     dev: './dev',
     build: './build',

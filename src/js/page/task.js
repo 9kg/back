@@ -2,74 +2,78 @@ $(function() {
     var opt = {
         $ct: $(".content"),
         col: [{
+            key: "id",
+            title: '<label class="checkbox"><input type="checkbox" name="sel_task_all"><span class="opt_imitate"></span></label>',
+            width: 20,
+            render: function(a, b) {
+                var btn_query = $('<label class="checkbox"><input type="checkbox" value="'+b+'" name="sel_task"><span class="opt_imitate"></span></label>');
+                a.append(btn_query);
+            }
+        }, {
             key: "idfa",
-            title: "推广",
+            title: "商务",
             sort: false,
             filter: true,
-            cls: "hidden_xs",
-            show: false
+            cls: "hidden_xs"
         }, {
             key: "id",
-            title: "ID",
+            title: "公司",
             sort: true,
-            filter: true
+            filter: true,
+            cls: "hidden_xs"
         }, {
             key: "login_times",
-            title: "类别",
+            title: "名称",
             sort: false,
             filter: true
         }, {
             key: "phone",
-            title: "姓名",
+            title: "关键词",
             sort: false,
-            filter: true
+            filter: true,
+            cls: "hidden_md"
         }, {
             key: "money",
-            title: "费用",
-            sort: true
+            title: "下载",
+            sort: true,
+            cls: "hidden_md"
         }, {
             key: "money",
-            title: "已付",
+            title: "评论",
             sort: true,
             cls: "hidden_xs"
         }, {
             key: "money",
-            title: "好友",
-            sort: true
-        }, {
-            key: "money",
-            title: "任务",
+            title: "投放",
             sort: true,
             cls: "hidden_xs"
         }, {
             key: "money",
-            title: "好友总消费",
+            title: "已完成",
             sort: true,
-            show: false
+            cls: "hidden_xs"
+        }, {
+            key: "login",
+            title: "开始时间",
+            sort: true,
+            cls: "hidden_md"
         }, {
             key: "wechat",
-            title: "手机",
+            title: "来源",
             sort: false,
             filter: true,
             cls: "hidden_xs"
         }, {
             key: "ip",
-            title: "微信",
+            title: "单价",
             sort: false,
             filter: true,
             cls: "hidden_xs"
         }, {
-            key: "login",
-            title: "平台",
+            key: "money",
+            title: "状态",
             sort: false,
-            filter: true,
-            show: false
-        }, {
-            key: "today",
-            title: "粉丝(在线观看)人数",
-            sort: false,
-            filter: true,
-            show: false
+            filter: true
         }, {
             key: "id",
             title: "操作",
@@ -85,6 +89,6 @@ $(function() {
     };
     new Table(opt);
     $('body').on('click','table .btn_query_detail',function(){
-        window.open('_HOST_/html/spd/guest_user_detail.html?id='+$(this).data('id'));
+        window.open('_HOST_/html/detail/task_detail.html?id='+$(this).data('id'));
     });
 });
