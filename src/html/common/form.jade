@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "form";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 添加任务
@@ -98,4 +98,4 @@ block body
           label.suffix_btn
             input(type='text')
             span.opt_imitate.btn.btn_success 搜索
-  include _temp/js_base
+  include ../_temp/js_base

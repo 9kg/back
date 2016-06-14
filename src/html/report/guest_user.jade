@@ -23,7 +23,7 @@ block head
         }
         input.date_start,input.date_end{
             text-align: center;
-            border-color: rgba(0,0,0,.1);
+            //- border-color: rgba(0,0,0,.1);
             padding: 0;
         }
         .date_separator_ct{
@@ -57,10 +57,13 @@ block body
                     input(type="checkbox",checked,id="chart_type")
                     span.opt_imitate 好友数任务数
                     span.opt_imitate 特邀支出费用
-            .ct_3.grid_nowrap
-                .ct_5-2: input.date_start(type='text', readonly)
-                .ct_5.date_separator_ct: i.iconfont.icon-86b
-                .ct_5-2: input.date_end(type='text', readonly)
+            .ct_3
+                .date_group
+                  .date_start_ct
+                    input.date_start(type='text', readonly)
+                  i.iconfont.icon-86b
+                  .date_end_ct
+                    input.date_end(type='text', readonly)
             .ct_3.grid_nowrap
                 .ct_3
                     select.query_type

@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
     - var curPage = "表格";
-    include _temp/menu
+    include ../_temp/menu
     .content
         label.radio
             input(type='radio', name='table_theme', value="default", checked='')
@@ -39,7 +39,7 @@ block body
             input(type='radio', name='table_theme', value="magenta")
             span.opt_imitate
             span.opt_desc 粉色
-    include _temp/js_base
+    include ../_temp/js_base
     script(type='text/javascript').
         $(function() {
             var opt = {

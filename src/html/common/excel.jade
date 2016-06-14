@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
     style(type='text/css').
         html,body,.content{
@@ -181,7 +181,7 @@ block body
                 .ct
                     button.btn.btn_info(data-step="#table") 上一步
                     button.btn.btn_info 导出
-    include _temp/js_base
+    include ../_temp/js_base
     script(type='text/javascript').
         $(function(){
             $('body').on('click','.btn',function(){

@@ -1,4 +1,5 @@
 $(function() {
+    // 配置广告主表格参数并初始化
     var opt = {
         $ct: $(".content"),
         col: [{
@@ -57,5 +58,16 @@ $(function() {
     new Table(opt);
     $('body').on('click','table .btn_query_detail',function(){
         window.open('_HOST_/html/detail/adver_detail.html?id='+$(this).data('id'));
+    }).on('click','.btn_adver_add',function(){
+        // 添加任务时 初始化弹窗标题及内容
+        oper_adver.box.initHeader('添加广告主');
+
+        oper_adver.box.initContent('_HOST_/html/temp/add_adver.html .add_adver_form', function() {
+            oper_adver.box.show();
+        });
+        var $tip_ct = $(this).closest("td");
+        oper_adver.box.afterfnSure = function(tip){
+            $tip_ct.operTip(tip || "操作成功！",{theme: "warning"});
+        }
     });
 });

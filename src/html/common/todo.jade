@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     ol>li{
@@ -13,7 +13,7 @@ block head
     }
 block body
   - var curPage = "todo";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 待办（todo）
@@ -47,4 +47,4 @@ block body
       li.unfinished 日期型字符串转日期
       li.unfinished 表格加载提示需要可以放在.table上
       li 表格不要分页时显示总记录数
-  include _temp/js_base
+  include ../_temp/js_base

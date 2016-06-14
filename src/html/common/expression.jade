@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 表情（expression） 
@@ -10,7 +10,7 @@ block body
       .ct
         textarea
         button.btn.btn_primary(type='button') 表情
-  include _temp/js_base
+  include ../_temp/js_base
   script(type='text/javascript').
     $(function() {
         // 表情

@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .container{
@@ -118,7 +118,7 @@ block head
     }
 block body
   - var curPage = "push";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 推送消息 
@@ -193,7 +193,7 @@ block body
               input#send_num(type='text', name='send_num', value='4000')
           .ct_3.send_btn_ct
             button#sendMsg.btn.btn_success(type='button') 群发
-  include _temp/js_base
+  include ../_temp/js_base
   script(type='text/javascript').
     $(function() {
         var versionUrl = base.host+"/module/getVersion";

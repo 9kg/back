@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 日期控件（datepicker） 
@@ -27,7 +27,7 @@ block body
           | 另一种格式
         .ct_4-3.import_ct
           input(type='text', readonly='')
-  include _temp/js_base
+  include ../_temp/js_base
   script(type='text/javascript').
     $(function() {
         // 日期

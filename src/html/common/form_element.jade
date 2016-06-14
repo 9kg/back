@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 表单元素（form-element） 
@@ -121,5 +121,10 @@ block body
           input(type='text')
           span.opt_imitate.btn.btn_danger 搜索
       .ct_2
+        .date_group
+          input(type='text', readonly='')
+          i.iconfont.icon-86b
+          input(type='text', readonly='')
+      .ct_2
         input(type='date')
-  include _temp/js_base
+  include ../_temp/js_base

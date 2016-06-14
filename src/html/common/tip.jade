@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .grid .ct{
@@ -7,7 +7,7 @@ block head
     }
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 小提示（tips） 
@@ -23,7 +23,7 @@ block body
         button.tip3.btn.btn_info 响应式方向,confirm
       .ct
         button.tip4.btn.btn_danger 响应式方向3
-  include _temp/js_base
+  include ../_temp/js_base
   script(type='text/javascript').
         var tip0 = new Tip({
                         $ct: $(".tip0"),

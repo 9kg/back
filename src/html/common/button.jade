@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 按钮（button） 
@@ -32,4 +32,4 @@ block body
             li 操作3的撒啊大多数
             li 操作4
         button.btn.btn_magenta_outline 品红
-  include _temp/js_base
+  include ../_temp/js_base

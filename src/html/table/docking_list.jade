@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .opers{
@@ -20,12 +20,12 @@ block head
     }
 block body
   - var curPage = "docking_list";
-  include _temp/menu
+  include ../_temp/menu
   .content
     .opers
       button.btn.btn_primary.add_docking(type='button') 添加对接
     .docking_list
-  include _temp/js_base
+  include ../_temp/js_base
   script(type='text/javascript').
     $(function() {
         var operUrl = "http://es1.laizhuan.com/module/interface/index.php";

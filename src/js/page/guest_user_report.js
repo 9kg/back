@@ -125,8 +125,7 @@ $(function(){
                         axisLine: {onZero: true},
                         data: $.map(list, function(item) {
                             return item.day;
-                        }),
-                        position: 'top'
+                        })
                     }
                 ],
                 yAxis : [
@@ -137,8 +136,7 @@ $(function(){
                     {
                         gridIndex: 1,
                         name : '任务数(个)',
-                        type : 'value',
-                        inverse: true
+                        type : 'value'
                     }
                 ],
                 series : [

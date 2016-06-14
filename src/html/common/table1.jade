@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "表格";
-  include _temp/menu
+  include ../_temp/menu
   .content
     form.table_filter
       .page_size
@@ -49,4 +49,4 @@ block body
           td 数据04
           td 数据05
           td 数据06
-  include _temp/js_base
+  include ../_temp/js_base

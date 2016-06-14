@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .icon_lists{
@@ -25,7 +25,7 @@ block head
     }
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 图标（icon-font） 
@@ -4331,4 +4331,4 @@ block body
         .name ninininin
         .code &amp;#xe95b;
         .fontclass .icon-95b
-  include _temp/js_base
+  include ../_temp/js_base

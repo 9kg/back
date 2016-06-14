@@ -108,8 +108,31 @@ table.table{
         border-width: 1px;
         border-style: solid;
         padding: @cell-padding;
+        .radio, .checkbox{
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            .opt_imitate{
+                top: 0;
+            }
+        }
     }
     th{
+        .radio, .checkbox{
+            .opt_imitate{
+                border: 1px solid #fff;
+                box-sizing: border-box;
+                background-color: inherit;
+                &:after{
+                    background-color: inherit;
+                }
+            }
+            input[type='checkbox']:checked ~ .opt_imitate,input[type='checkbox']:checked ~ .opt_imitate:after{
+                background-color: inherit;
+            }
+        }
         font-weight: normal;
         &.sort,&.sort_asc,&.sort_desc{
             padding-right: @sort2right*2+@sort-width;

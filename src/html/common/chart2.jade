@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .ct_2{
@@ -7,7 +7,7 @@ block head
     }
 block body
   - var curPage = "图表";
-  include _temp/menu
+  include ../_temp/menu
   .content
       h1
         | 图表示例（二） 
@@ -15,7 +15,7 @@ block body
       .grid_lg
         .ct_2
         .ct_2
-  include _temp/js_chart
+  include ../_temp/js_chart
   script(type='text/javascript').
       $(function() {
           $.ajax({

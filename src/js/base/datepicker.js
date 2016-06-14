@@ -31,6 +31,7 @@ Datepicker.prototype = (function(){
         this.$el.html(this.renderHead());
         this.$el.append(this.renderBody());
         this.$el.append(this.renderFoot());
+        this.$el.css(this.css);
     },renderHead = function(){
         var y = base.date('y',this.datetime);
         var m = base.date('m',this.datetime);

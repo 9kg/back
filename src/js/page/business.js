@@ -40,5 +40,16 @@ $(function() {
     new Table(opt);
     $('body').on('click','table .btn_query_detail',function(){
         window.open('_HOST_/html/detail/business_detail.html?id='+$(this).data('id'));
+    }).on('click','.btn_business_add',function(){
+        // 添加任务时 初始化弹窗标题及内容
+        oper_business.box.initHeader('添加商务');
+
+        oper_business.box.initContent('_HOST_/html/temp/add_business.html .add_business_form', function() {
+            oper_business.box.show();
+        });
+        var $tip_ct = $(this).closest("td");
+        oper_business.box.afterfnSure = function(tip){
+            $tip_ct.operTip(tip || "操作成功！",{theme: "warning"});
+        }
     });
 });

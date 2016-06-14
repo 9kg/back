@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .content{
@@ -38,11 +38,11 @@ block head
     }
 block body
   - var curPage = "welcome";
-  include _temp/menu
+  include ../_temp/menu
   .content
     .container
       i.iconfont.icon-730.iconWelcome
       i.iconfont.icon-730.iconWelcome
       i.iconfont.icon-730.iconWelcome
       p.desc 欢迎xxx访问*.^_^.* ~~
-  include _temp/js_base
+  include ../_temp/js_base

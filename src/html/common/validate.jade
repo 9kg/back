@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 验证（validate）
@@ -27,4 +27,4 @@ block body
           | 非负整数
         .ct_4-3.import_ct
           input(type='text', data-validate='int,!-')
-  include _temp/js_base
+  include ../_temp/js_base

@@ -175,7 +175,7 @@ Table.prototype = (function(){
                                         +'条'
                                     +'</div>');
             base.renderOption($('[name="page_size"]',filter_page_size),this.pageSizes);
-            $('[name="page_size"]',filter_ct).find('option[value="'+this.sendData.page_size+'"]').prop("selected",true);
+            filter_page_size.find('option[value="'+this.sendData.page_size+'"]').prop("selected",true);
             filter_ct.append(filter_page_size);
         }
         var filterOpt = $.map(this.col, function(n) {

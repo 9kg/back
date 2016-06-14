@@ -164,13 +164,25 @@ $(function(){
                 case 'num': tip = "请输入数字！",condition = base.isNum(val); break;
                 case 'int': tip = "请输入整数！",condition = base.isInt(val); break;
                 case '+': tip = "请输入大于0的数字！",condition = val > 0; break;
-                case '-': tip = "请输入大于0的数字！",condition = val < 0; break;
+                case '-': tip = "请输入小于0的数字！",condition = val < 0; break;
                 case '!-': tip = "请输入不小于0的数字！",condition = val >= 0; break;
                 case '!+': tip = "请输入不大于0的数字！",condition = val <= 0; break;
                 default: tip = "您的输入有误！",condition = base.isNum(val);
             };
         }
+        var dir = $(this).attr('data-validate-dir') || 'top';
+        $(this).validate(condition,tip,{dir:dir});
+    });
 
-        $(this).validate(condition,tip);
+    //表格中全选
+    $('body').on('change', '[type="checkbox"]', function(){
+        var $table = $(this).closest('table');
+        var $check_one = $table.find('td [type="checkbox"]');
+        var $check_all = $table.find('th [type="checkbox"]');
+        if($(this).closest('th,td').is('th')){
+            $check_one.prop('checked', $(this).prop('checked'));
+        }else{
+            $check_all.prop('checked', $check_one.filter(':checked').length === $check_one.length);
+        }
     });
 });

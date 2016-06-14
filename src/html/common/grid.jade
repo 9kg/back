@@ -1,4 +1,4 @@
-extends _temp/main
+extends ../_temp/main
 block head
   style(type='text/css').
     .grid_nowrap div,.grid div,.grid_md div,.grid_lg div{
@@ -14,7 +14,7 @@ block head
     }
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 网格布局（grid） 
@@ -127,4 +127,4 @@ block body
       .ct_6 1/6(&gt;1200px)
       .ct_6 1/6(&gt;1200px)
       .ct_6 1/6(&gt;1200px)
-  include _temp/js_base
+  include ../_temp/js_base

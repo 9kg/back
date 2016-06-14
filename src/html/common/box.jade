@@ -1,7 +1,7 @@
-extends _temp/main
+extends ../_temp/main
 block body
   - var curPage = "UI组件";
-  include _temp/menu
+  include ../_temp/menu
   .content
     h1
       | 弹框（box） 
@@ -16,7 +16,7 @@ block body
         button.box0.btn ajax获取非本页面的html
       .ct
         button.box1.btn.btn_success 本页面的html
-  include _temp/js_base
+  include ../_temp/js_base
   script(type='text/javascript').
     var box0 = new Box({
                     title:"添加任务",
