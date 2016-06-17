@@ -1,8 +1,71 @@
 $(function() {
+    // var opt = {
+    //     $ct: $(".content"),
+    //     col: [{
+    //         key: "id",
+    //         title: "ID",
+    //         cls: 'hidden_xs',
+    //         sort: true,
+    //         filter: true
+    //     }, {
+    //         key: "idfa",
+    //         title: "IDFA",
+    //         cls: 'hidden_xs',
+    //         sort: false,
+    //         filter: true
+    //     }, {
+    //         key: "phone",
+    //         title: "电话",
+    //         sort: false,
+    //         filter: true
+    //     }, {
+    //         key: "wechat",
+    //         title: "微信",
+    //         sort: false,
+    //         filter: true
+    //     }, {
+    //         key: "ip",
+    //         title: "最近IP",
+    //         sort: false,
+    //         cls: 'hidden_xs',
+    //         filter: true
+    //     }, {
+    //         key: "login_times",
+    //         title: "登录次数",
+    //         sort: false,
+    //         filter: true
+    //     }, {
+    //         key: "login",
+    //         title: "最近登录",
+    //         cls: 'hidden_xs',
+    //         sort: false,
+    //         filter: true
+    //     }, {
+    //         key: "today",
+    //         title: "今日收入",
+    //         sort: false,
+    //         filter: true
+    //     }, {
+    //         key: "money",
+    //         title: "历史收入",
+    //         cls: 'hidden_xs',
+    //         sort: true
+    //     }, {
+    //         key: "id",
+    //         title: "操作",
+    //         render: function(a, b) {
+    //             var btn_query = $('<button type="button" class="btn btn_info btn_query_detail" data-id="' + b + '">查看</button>');
+    //             var btn_level = $('<button type="button" class="btn btn_danger btn_level" data-id="' + b + '">特邀</button>');
+    //             a.append(btn_query, btn_level);
+    //         }
+    //     }],
+    //     // isLocal: true,
+    //     url: "_HOST_/js/json/user.json"
+    // };
     var opt = {
         $ct: $(".content"),
         col: [{
-            key: "id",
+            key: "objectId",
             title: "ID",
             cls: 'hidden_xs',
             sort: true,
@@ -19,8 +82,8 @@ $(function() {
             sort: false,
             filter: true
         }, {
-            key: "wechat",
-            title: "微信",
+            key: "nickname",
+            title: "昵称",
             sort: false,
             filter: true
         }, {
@@ -30,28 +93,31 @@ $(function() {
             cls: 'hidden_xs',
             filter: true
         }, {
-            key: "login_times",
+            key: "loginNum",
             title: "登录次数",
             sort: false,
             filter: true
         }, {
-            key: "login",
+            key: "loginLatist",
             title: "最近登录",
             cls: 'hidden_xs',
             sort: false,
             filter: true
         }, {
-            key: "today",
+            key: "todayGet",
             title: "今日收入",
             sort: false,
-            filter: true
+            filter: true,
+            render: function(a,b){
+                a.html(b || '0');
+            }
         }, {
-            key: "money",
+            key: "allGet",
             title: "历史收入",
             cls: 'hidden_xs',
             sort: true
         }, {
-            key: "id",
+            key: "objectId",
             title: "操作",
             render: function(a, b) {
                 var btn_query = $('<button type="button" class="btn btn_info btn_query_detail" data-id="' + b + '">查看</button>');
@@ -59,8 +125,8 @@ $(function() {
                 a.append(btn_query, btn_level);
             }
         }],
-        isLocal: true,
-        url: "_HOST_/js/json/user.json"
+        // isLocal: true,
+        url: "http://192.168.1.107:9211/user/query"
     };
     new Table(opt);
     

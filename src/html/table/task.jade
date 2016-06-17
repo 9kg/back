@@ -1,6 +1,9 @@
 extends ../_temp/main
 block head
     style(type="text/css").
+        .tool_ct{
+            margin-bottom: 15px;
+        }
         .oper_ct .btn{
             margin: 0 3px;
         }
@@ -8,11 +11,11 @@ block head
             float: right;
         }
 block body
-    - var curPage = "项目";
+    - var curPage = "task";
     include ../_temp/menu
     .content
-        .grid
-            .ct_5-2
+        .grid.tool_ct
+            .ct_5-2.filter_ct
                 .btn_radios.btn_radios_6
                     label.btn_radio
                         input(type='radio', name='task_status', value='-2')

@@ -28,7 +28,7 @@ $(function(){
             html: "_HOST_/html/temp/add_promoter.html .add_promoter_form",
             css: {
                 "min-width": "320px",
-                "max-width": "420px",
+                "max-width": "420px"
             },
             fnSure: function(that,fn) {
                 if(!sendData(that && that.afterfnSure)){

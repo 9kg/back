@@ -202,7 +202,6 @@ gulp.task('default',function(){
             server: config.server,
             port: 5211,
             open: "external",
-            reloadDebounce: 2000,
             startPath: config.startPath
         });
     });

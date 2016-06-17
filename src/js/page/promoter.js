@@ -16,13 +16,18 @@ $(function() {
             cls: "hidden_xs"
         }, {
             key: "money",
-            title: "销售额",
+            title: "推广费用",
+            sort: true
+        }, {
+            key: "today",
+            title: "产生的消费",
             sort: true,
             cls: "hidden_xs"
         }, {
             key: "today",
-            title: "任务完成数",
-            sort: true
+            title: "完成任务数",
+            sort: true,
+            cls: "hidden_xs"
         }, {
             key: "id",
             title: "操作",
